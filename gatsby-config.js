@@ -1,5 +1,9 @@
 'use strict'
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: 'gatsby-starter-typescript-plus',
@@ -13,6 +17,19 @@ module.exports = {
     }
   },
   plugins: [
+    {
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        baseUrl: process.env.WORDPRESS_URL_PATH,
+        protocol: process.env.WORDPRESS_URL_PROTOCOL,
+        hostingWPCOM: false,
+        useACF: false,
+        includedRoutes: [
+          "**/posts",
+          "**/media",
+        ],
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
