@@ -4,10 +4,11 @@ import { Link, graphql } from 'gatsby'
 import Page from '../components/Page'
 import Container from '../components/Container'
 import IndexLayout from '../layouts'
+import {Wordpress__PostConnection} from "../../types/graphql-types";
 
 export const query = graphql`
     query allPost {
-        allWordpressPost {
+        allWordpressPost(limit: 4, sort: {order: DESC, fields: id}) {
             edges {
                 node {
                     id
@@ -19,7 +20,13 @@ export const query = graphql`
     }
 `
 
-const IndexPage = ({data}) => {
+type DataType = {
+  data: {
+    allWordpressPost: Wordpress__PostConnection
+  }
+}
+
+const IndexPage = ({data}: DataType) => {
 
   const postsElement =  data.allWordpressPost.edges.map((edge) => {
     const node = edge.node
@@ -27,7 +34,7 @@ const IndexPage = ({data}) => {
         <div key={node.id}>
           <h1>{node.title}</h1>
           <div
-              dangerouslySetInnerHTML={{ __html: node.content }} />
+              dangerouslySetInnerHTML={{ __html: node.content! }} />
         </div>
     )})
 
