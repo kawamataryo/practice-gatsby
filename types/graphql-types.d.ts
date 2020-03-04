@@ -693,8 +693,6 @@ export type FileFieldsEnum =
   'childMarkdownRemark___excerpt' |
   'childMarkdownRemark___rawMarkdownBody' |
   'childMarkdownRemark___fileAbsolutePath' |
-  'childMarkdownRemark___fields___slug' |
-  'childMarkdownRemark___fields___layout' |
   'childMarkdownRemark___html' |
   'childMarkdownRemark___htmlAst' |
   'childMarkdownRemark___excerptAst' |
@@ -1381,7 +1379,6 @@ export type MarkdownRemark = Node & {
   excerpt?: Maybe<Scalars['String']>,
   rawMarkdownBody?: Maybe<Scalars['String']>,
   fileAbsolutePath?: Maybe<Scalars['String']>,
-  fields?: Maybe<MarkdownRemarkFields>,
   html?: Maybe<Scalars['String']>,
   htmlAst?: Maybe<Scalars['JSON']>,
   excerptAst?: Maybe<Scalars['JSON']>,
@@ -1447,11 +1444,6 @@ export type MarkdownRemarkEdge = {
   previous?: Maybe<MarkdownRemark>,
 };
 
-export type MarkdownRemarkFields = {
-  slug?: Maybe<Scalars['String']>,
-  layout?: Maybe<Scalars['String']>,
-};
-
 export type MarkdownRemarkFieldsEnum = 
   'id' |
   'frontmatter___title' |
@@ -1459,8 +1451,6 @@ export type MarkdownRemarkFieldsEnum =
   'excerpt' |
   'rawMarkdownBody' |
   'fileAbsolutePath' |
-  'fields___slug' |
-  'fields___layout' |
   'html' |
   'htmlAst' |
   'excerptAst' |
@@ -1558,18 +1548,12 @@ export type MarkdownRemarkFieldsEnum =
   'internal___owner' |
   'internal___type';
 
-export type MarkdownRemarkFieldsFilterInput = {
-  slug?: Maybe<StringQueryOperatorInput>,
-  layout?: Maybe<StringQueryOperatorInput>,
-};
-
 export type MarkdownRemarkFilterInput = {
   id?: Maybe<StringQueryOperatorInput>,
   frontmatter?: Maybe<MarkdownRemarkFrontmatterFilterInput>,
   excerpt?: Maybe<StringQueryOperatorInput>,
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>,
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>,
-  fields?: Maybe<MarkdownRemarkFieldsFilterInput>,
   html?: Maybe<StringQueryOperatorInput>,
   htmlAst?: Maybe<JsonQueryOperatorInput>,
   excerptAst?: Maybe<JsonQueryOperatorInput>,
@@ -1806,6 +1790,7 @@ export type QuerySitePageArgs = {
   children?: Maybe<NodeFilterListInput>,
   internal?: Maybe<InternalFilterInput>,
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>,
+  context?: Maybe<SitePageContextFilterInput>,
   pluginCreator?: Maybe<SitePluginFilterInput>,
   pluginCreatorId?: Maybe<StringQueryOperatorInput>,
   componentPath?: Maybe<StringQueryOperatorInput>
@@ -1848,7 +1833,6 @@ export type QueryMarkdownRemarkArgs = {
   excerpt?: Maybe<StringQueryOperatorInput>,
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>,
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>,
-  fields?: Maybe<MarkdownRemarkFieldsFilterInput>,
   html?: Maybe<StringQueryOperatorInput>,
   htmlAst?: Maybe<JsonQueryOperatorInput>,
   excerptAst?: Maybe<JsonQueryOperatorInput>,
@@ -2381,6 +2365,7 @@ export type SitePage = Node & {
   children: Array<Node>,
   internal: Internal,
   isCreatedByStatefulCreatePages?: Maybe<Scalars['Boolean']>,
+  context?: Maybe<SitePageContext>,
   pluginCreator?: Maybe<SitePlugin>,
   pluginCreatorId?: Maybe<Scalars['String']>,
   componentPath?: Maybe<Scalars['String']>,
@@ -2405,6 +2390,14 @@ export type SitePageConnectionGroupArgs = {
   skip?: Maybe<Scalars['Int']>,
   limit?: Maybe<Scalars['Int']>,
   field: SitePageFieldsEnum
+};
+
+export type SitePageContext = {
+  id?: Maybe<Scalars['String']>,
+};
+
+export type SitePageContextFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>,
 };
 
 export type SitePageEdge = {
@@ -2506,6 +2499,7 @@ export type SitePageFieldsEnum =
   'internal___owner' |
   'internal___type' |
   'isCreatedByStatefulCreatePages' |
+  'context___id' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -2601,6 +2595,7 @@ export type SitePageFilterInput = {
   children?: Maybe<NodeFilterListInput>,
   internal?: Maybe<InternalFilterInput>,
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>,
+  context?: Maybe<SitePageContextFilterInput>,
   pluginCreator?: Maybe<SitePluginFilterInput>,
   pluginCreatorId?: Maybe<StringQueryOperatorInput>,
   componentPath?: Maybe<StringQueryOperatorInput>,
@@ -4334,7 +4329,14 @@ export type IndexLayoutQueryQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<Sit
 export type AllPostQueryVariables = {};
 
 
-export type AllPostQuery = { allWordpressPost: { edges: Array<{ node: Pick<Wordpress__Post, 'id' | 'title' | 'content'> }> } };
+export type AllPostQuery = { allWordpressPost: { edges: Array<{ node: Pick<Wordpress__Post, 'slug' | 'id' | 'title' | 'content'> }> } };
+
+export type MyQueryQueryVariables = {
+  id: Scalars['String']
+};
+
+
+export type MyQueryQuery = { wordpressPost: Maybe<Pick<Wordpress__Post, 'date' | 'content' | 'title'>> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
