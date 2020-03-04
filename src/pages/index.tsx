@@ -8,7 +8,7 @@ import {Wordpress__PostConnection} from "../../types/graphql-types";
 
 export const query = graphql`
     query allPost {
-        allWordpressPost(limit: 4, sort: {order: DESC, fields: id}) {
+        allWordpressPost(limit: 4, sort: {order: DESC, fields: date}) {
             edges {
                 node {
                     id
@@ -26,7 +26,7 @@ type DataType = {
   }
 }
 
-const IndexPage = ({data}: DataType) => {
+const IndexPage: React.FC<DataType> = ({data}) => {
 
   const postsElement =  data.allWordpressPost.edges.map((edge) => {
     const node = edge.node
