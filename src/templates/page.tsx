@@ -4,11 +4,10 @@ import { graphql } from 'gatsby'
 import Page from '../components/Page'
 import Container from '../components/Container'
 import IndexLayout from '../layouts'
-// eslint-disable-next-line @typescript-eslint/camelcase
 import { Wordpress__Post } from '../../types/graphql-types'
 
 export const query = graphql`
-  query MyQuery($id: String!) {
+  query($id: String!) {
     wordpressPost(id: { eq: $id }) {
       date(formatString: "YYYY/MM/DD")
       content

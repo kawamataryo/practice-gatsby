@@ -34,7 +34,7 @@ const IndexPage: React.FC<DataType> = ({ data }) => {
     return (
       <div key={node.id}>
         <h1>
-          <Link to={`/${node.id}`}>{node.title}</Link>
+          <Link to={`/${decodeURI(node.slug!)}`}>{node.title}</Link>
         </h1>
         <div dangerouslySetInnerHTML={{ __html: node.content! }} />
       </div>
