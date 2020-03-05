@@ -6,8 +6,6 @@ type PostList = {
   allWordpressPost: Wordpress__PostConnection
 }
 
-const POST_PER_PAGE = 3
-
 export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -24,6 +22,9 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions 
   if (result.errors || !result.data) {
     throw new Error(result.errors)
   }
+
+  // 投稿一覧ページの作成
+  const POST_PER_PAGE = 3
   const posts = result.data.allWordpressPost.nodes
   const numPages = Math.ceil(posts.length / POST_PER_PAGE)
 

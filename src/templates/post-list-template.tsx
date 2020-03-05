@@ -1,10 +1,10 @@
-import * as React from 'react'
+import * as React from "react";
 
-import { graphql, Link } from 'gatsby'
-import Page from '../components/Page'
-import Container from '../components/Container'
-import IndexLayout from '../layouts'
-import { Wordpress__PostConnection } from '../../types/graphql-types'
+import { graphql, Link } from "gatsby";
+import Page from "../components/Page";
+import Container from "../components/Container";
+import IndexLayout from "../layouts";
+import { Wordpress__PostConnection } from "../../types/graphql-types";
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
@@ -17,34 +17,34 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 type DataType = {
   data: {
     // eslint-disable-next-line @typescript-eslint/camelcase
-    allWordpressPost: Wordpress__PostConnection
-  }
+    allWordpressPost: Wordpress__PostConnection;
+  };
   pageContext: {
-    currentPage: number
-    numPages: number
-  }
-}
+    currentPage: number;
+    numPages: number;
+  };
+};
 
 const postListTemplate: React.FC<DataType> = ({ data, pageContext }) => {
-  const { currentPage, numPages } = pageContext
-  const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
-  const prevPagePath = currentPage - 1 === 1 ? '/posts' : `posts/${currentPage - 1}`
-  const nextPagePath = `posts/${currentPage + 1}`
+  const { currentPage, numPages } = pageContext;
+  const isFirst = currentPage === 1;
+  const isLast = currentPage === numPages;
+  const prevPagePath = currentPage - 1 === 1 ? "/posts" : `posts/${currentPage - 1}`;
+  const nextPagePath = `posts/${currentPage + 1}`;
 
   const posts = data.allWordpressPost.nodes.map(post => {
     return (
       <article key={post.id}>
         <h1>{post.title}</h1>
-        <p>{post.excerpt}</p>
+        <div dangerouslySetInnerHTML={{ __html: post.excerpt! }} />
       </article>
-    )
-  })
+    );
+  });
 
   return (
     <IndexLayout>
@@ -62,7 +62,7 @@ const postListTemplate: React.FC<DataType> = ({ data, pageContext }) => {
         )}
       </Page>
     </IndexLayout>
-  )
-}
+  );
+};
 
-export default postListTemplate
+export default postListTemplate;

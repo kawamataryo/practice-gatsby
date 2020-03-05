@@ -1,10 +1,10 @@
-import * as React from 'react'
+import * as React from "react";
 
-import { graphql } from 'gatsby'
-import Page from '../components/Page'
-import Container from '../components/Container'
-import IndexLayout from '../layouts'
-import { Wordpress__Post } from '../../types/graphql-types'
+import { graphql } from "gatsby";
+import Page from "../components/Page";
+import Container from "../components/Container";
+import IndexLayout from "../layouts";
+import { Wordpress__Post } from "../../types/graphql-types";
 
 export const query = graphql`
   query($id: String!) {
@@ -14,17 +14,17 @@ export const query = graphql`
       title
     }
   }
-`
+`;
 
-type DataType = {
+type PageTemplateType = {
   data: {
     // eslint-disable-next-line @typescript-eslint/camelcase
-    wordpressPost: Wordpress__Post
-  }
-}
+    wordpressPost: Wordpress__Post;
+  };
+};
 
-const PageTemplate: React.FC<DataType> = ({ data }) => {
-  const post = data.wordpressPost
+const PageTemplate: React.FC<PageTemplateType> = ({ data }) => {
+  const post = data.wordpressPost;
   return (
     <IndexLayout>
       <Page>
@@ -35,7 +35,7 @@ const PageTemplate: React.FC<DataType> = ({ data }) => {
         </Container>
       </Page>
     </IndexLayout>
-  )
-}
+  );
+};
 
-export default PageTemplate
+export default PageTemplate;
