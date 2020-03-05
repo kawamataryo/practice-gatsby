@@ -33,6 +33,7 @@ const IndexPage: React.FC<DataType> = ({ data }) => {
     const { node } = edge;
     return (
       <div key={node.id}>
+        <Link to="/posts">投稿一覧</Link>
         <h1>
           <Link to={`/${decodeURI(node.slug!)}`}>{node.title}</Link>
         </h1>

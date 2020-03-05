@@ -5,6 +5,7 @@ import Page from "../components/Page";
 import Container from "../components/Container";
 import IndexLayout from "../layouts";
 import { Wordpress__PostConnection } from "../../types/graphql-types";
+import { convertLink } from "../lib/convert-link";
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
@@ -41,7 +42,7 @@ const postListTemplate: React.FC<DataType> = ({ data, pageContext }) => {
     return (
       <article key={post.id}>
         <h1>{post.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: post.excerpt! }} />
+        <div dangerouslySetInnerHTML={{ __html: convertLink(post.excerpt!) }} />
       </article>
     );
   });
