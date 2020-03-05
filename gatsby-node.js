@@ -6,3 +6,4 @@ require('ts-node').register({
 })
 
 exports.createPages = require('./gatsby-node/post-single').createPages
+exports.createPages = require('./gatsby-node/post-list').createPages

@@ -1710,8 +1710,6 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>,
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>,
-  port?: Maybe<IntQueryOperatorInput>,
-  host?: Maybe<StringQueryOperatorInput>,
   polyfill?: Maybe<BooleanQueryOperatorInput>,
   pathPrefix?: Maybe<StringQueryOperatorInput>,
   id?: Maybe<StringQueryOperatorInput>,
@@ -1932,8 +1930,6 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>,
   siteMetadata?: Maybe<SiteSiteMetadata>,
-  port?: Maybe<Scalars['Int']>,
-  host?: Maybe<Scalars['String']>,
   polyfill?: Maybe<Scalars['Boolean']>,
   pathPrefix?: Maybe<Scalars['String']>,
   id: Scalars['ID'],
@@ -2140,8 +2136,6 @@ export type SiteFieldsEnum =
   'siteMetadata___author___name' |
   'siteMetadata___author___url' |
   'siteMetadata___author___email' |
-  'port' |
-  'host' |
   'polyfill' |
   'pathPrefix' |
   'id' |
@@ -2234,8 +2228,6 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>,
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>,
-  port?: Maybe<IntQueryOperatorInput>,
-  host?: Maybe<StringQueryOperatorInput>,
   polyfill?: Maybe<BooleanQueryOperatorInput>,
   pathPrefix?: Maybe<StringQueryOperatorInput>,
   id?: Maybe<StringQueryOperatorInput>,
@@ -2292,11 +2284,17 @@ export type SitePageConnectionGroupArgs = {
 };
 
 export type SitePageContext = {
-  id?: Maybe<Scalars['String']>,
+  limit?: Maybe<Scalars['Int']>,
+  skip?: Maybe<Scalars['Int']>,
+  numPages?: Maybe<Scalars['Int']>,
+  currentPage?: Maybe<Scalars['Int']>,
 };
 
 export type SitePageContextFilterInput = {
-  id?: Maybe<StringQueryOperatorInput>,
+  limit?: Maybe<IntQueryOperatorInput>,
+  skip?: Maybe<IntQueryOperatorInput>,
+  numPages?: Maybe<IntQueryOperatorInput>,
+  currentPage?: Maybe<IntQueryOperatorInput>,
 };
 
 export type SitePageEdge = {
@@ -2398,7 +2396,10 @@ export type SitePageFieldsEnum =
   'internal___owner' |
   'internal___type' |
   'isCreatedByStatefulCreatePages' |
-  'context___id' |
+  'context___limit' |
+  'context___skip' |
+  'context___numPages' |
+  'context___currentPage' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -4227,11 +4228,19 @@ export type AllPostQueryVariables = {};
 export type AllPostQuery = { allWordpressPost: { edges: Array<{ node: Pick<Wordpress__Post, 'slug' | 'id' | 'title' | 'content'> }> } };
 
 export type Unnamed_1_QueryVariables = {
+  skip: Scalars['Int'],
+  limit: Scalars['Int']
+};
+
+
+export type Unnamed_1_Query = { allWordpressPost: { nodes: Array<Pick<Wordpress__Post, 'id' | 'title' | 'excerpt' | 'slug'>> } };
+
+export type Unnamed_2_QueryVariables = {
   id: Scalars['String']
 };
 
 
-export type Unnamed_1_Query = { wordpressPost: Maybe<Pick<Wordpress__Post, 'date' | 'content' | 'title'>> };
+export type Unnamed_2_Query = { wordpressPost: Maybe<Pick<Wordpress__Post, 'date' | 'content' | 'title'>> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
