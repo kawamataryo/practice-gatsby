@@ -5,4 +5,8 @@ require("ts-node").register({
   }
 });
 
-exports.createPages = require("./gatsby-node/create-page").createPages;
+const { createPosts } = require("./gatsby-node/create-posts");
+
+exports.createPages = async ({ actions, graphql }) => {
+  await createPosts({ actions, graphql });
+};

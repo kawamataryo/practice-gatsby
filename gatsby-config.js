@@ -1,19 +1,17 @@
-'use strict'
-
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env.${process.env.NODE_ENV}`
 });
 
 module.exports = {
   siteMetadata: {
-    title: 'gatsby-starter-typescript-plus',
-    description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
-    keywords: 'gatsbyjs, gatsby, javascript, sample, something',
-    siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
+    title: "gatsby-starter-typescript-plus",
+    description: "A starter kit for TypeScript-based Gatsby projects with sensible defaults.",
+    keywords: "gatsbyjs, gatsby, javascript, sample, something",
+    siteUrl: "https://gatsby-starter-typescript-plus.netlify.com",
     author: {
-      name: 'Resi Respati',
-      url: 'https://twitter.com/resir014',
-      email: 'resir014@gmail.com'
+      name: "Resi Respati",
+      url: "https://twitter.com/resir014",
+      email: "resir014@gmail.com"
     }
   },
   plugins: [
@@ -24,54 +22,30 @@ module.exports = {
         protocol: process.env.WORDPRESS_URL_PROTOCOL,
         hostingWPCOM: false,
         useACF: false,
-        includedRoutes: [
-          "**/posts",
-          "**/media",
-        ],
-      },
-    },
-    {
-      resolve: 'gatsby-transformer-remark',
-      options: {
+        includedRoutes: ["**/posts", "**/media"],
         plugins: [
           {
-            resolve: 'gatsby-remark-responsive-iframe',
+            resolve: `gatsby-wordpress-inline-images`,
             options: {
-              wrapperStyle: 'margin-bottom: 1rem'
-            }
-          },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1140,
-              quality: 90,
-              linkImagesToOriginal: false
+              baseUrl: process.env.WORDPRESS_URL_PATH,
+              protocol: process.env.WORDPRESS_URL_PROTOCOL,
             }
           }
         ]
       }
     },
-    'gatsby-transformer-json',
     {
-      resolve: 'gatsby-plugin-canonical-urls',
-      options: {
-        siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com'
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-graphql-codegen',
+      resolve: "gatsby-plugin-graphql-codegen",
       options: {
         fileName: `types/graphql-types.d.ts`
       }
     },
     "gatsby-plugin-extract-schema",
-    'gatsby-plugin-emotion',
-    'gatsby-plugin-typescript',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-react-helmet'
+    "gatsby-plugin-emotion",
+    "gatsby-plugin-typescript",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-react-helmet",
+    "gatsby-image"
   ]
-}
+};

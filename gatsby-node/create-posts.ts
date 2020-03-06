@@ -6,7 +6,7 @@ type PostList = {
   allWordpressPost: Wordpress__PostConnection;
 };
 
-export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions }) => {
+export const createPosts: GatsbyNode["createPages"] = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
   const result = await graphql<PostList>(`
