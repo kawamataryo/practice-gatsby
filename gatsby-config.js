@@ -11,7 +11,7 @@ module.exports = {
     author: {
       name: "Resi Respati",
       url: "https://twitter.com/resir014",
-      email: "resir014@gmail.com"
+      email: "resir014@gmail.coms"
     }
   },
   plugins: [
