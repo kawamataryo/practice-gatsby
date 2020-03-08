@@ -1,3 +1,5 @@
+/*eslint @typescript-eslint/camelcase:0*/
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
