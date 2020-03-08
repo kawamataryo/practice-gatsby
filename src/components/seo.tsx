@@ -13,7 +13,7 @@ import { useStaticQuery, graphql } from "gatsby";
 type PropsType = {
   description?: string;
   lang?: string;
-  meta?: any;
+  meta?: object[];
   title: string;
 };
 
