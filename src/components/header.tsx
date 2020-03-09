@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import * as PropTypes from "prop-types";
-import * as React from "react";
+import React from "react";
 
 type HeaderProps = {
   siteTitle: string;
