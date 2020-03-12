@@ -1,7 +1,7 @@
 /*eslint @typescript-eslint/camelcase:0*/
 
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env.${process.env.NODE_ENV}`
 });
 
 module.exports = {
@@ -19,6 +19,12 @@ module.exports = {
         path: `${__dirname}/src/images`
       }
     },
+    {
+      resolve: "gatsby-plugin-graphql-codegen",
+      options: {
+        fileName: `types/graphql-types.d.ts`
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-typescript`,
@@ -28,9 +34,7 @@ module.exports = {
         // Facebook account or page ID
         pageId: process.env.FACEBOOK_PAGE_ID,
         params: {
-          fields: [
-            "feed { message, created_time, full_picture }"
-          ]
+          fields: ["feed { message, created_time, full_picture }"]
         },
         // Access Token from facebook
         accessToken: process.env.FACEBOOK_TOKEN
