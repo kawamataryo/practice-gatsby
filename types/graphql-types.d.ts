@@ -2152,14 +2152,14 @@ export type SitePageContextFeed = {
   message?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   full_picture?: Maybe<Scalars['String']>;
-  created_time?: Maybe<Scalars['Date']>;
+  created_time?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextFeedFilterInput = {
   message?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   full_picture?: Maybe<StringQueryOperatorInput>;
-  created_time?: Maybe<DateQueryOperatorInput>;
+  created_time?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageContextFilterInput = {

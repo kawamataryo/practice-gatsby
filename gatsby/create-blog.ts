@@ -1,9 +1,11 @@
 import { GatsbyNode } from "gatsby";
 import path from "path";
 import { FacebookConnection } from "../types/graphql-types";
-const blogTemplate = path.resolve("./src/templates/blog.tsx");
+const blogSingleTemplate = path.resolve(
+  "./src/templates/BlogSingleTemplate.tsx"
+);
 
-export const createdPosts: GatsbyNode["createPages"] = async ({
+export const createBlog: GatsbyNode["createPages"] = async ({
   actions: { createPage },
   graphql
 }) => {
@@ -16,7 +18,7 @@ export const createdPosts: GatsbyNode["createPages"] = async ({
             message
             id
             full_picture
-            created_time
+            created_time(formatString: "YYYY年MM月DD日")
           }
         }
       }
@@ -38,10 +40,11 @@ export const createdPosts: GatsbyNode["createPages"] = async ({
 
   const feeds = feedData.data.allFacebook.nodes[0].feed!.data;
 
+  // create single
   feeds!.forEach(feed => {
     createPage({
       path: `/blog/${feed!.id}`,
-      component: blogTemplate,
+      component: blogSingleTemplate,
       context: {
         feed
       }

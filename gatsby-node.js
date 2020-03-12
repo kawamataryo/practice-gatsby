@@ -7,5 +7,5 @@ require("ts-node").register({
 });
 
 exports.createPages = async ({ actions, graphql }) => {
-  await require("./gatsby/createdPosts.ts").createdPosts({ actions, graphql });
+  await require("./gatsby/create-blog.ts").createBlog({ actions, graphql });
 };
