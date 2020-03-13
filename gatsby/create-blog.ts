@@ -1,8 +1,12 @@
 import { GatsbyNode } from "gatsby";
 import path from "path";
 import { FacebookConnection } from "../types/graphql-types";
+import { arrayChunk } from "../src/utils/arrayChunk";
 const blogSingleTemplate = path.resolve(
   "./src/templates/BlogSingleTemplate.tsx"
+);
+const blogArchiveTemplate = path.resolve(
+  "./src/templates/BlogArchiveTemplate.tsx"
 );
 
 export const createBlog: GatsbyNode["createPages"] = async ({
@@ -47,6 +51,23 @@ export const createBlog: GatsbyNode["createPages"] = async ({
       component: blogSingleTemplate,
       context: {
         feed
+      }
+    });
+  });
+
+  // create archive
+  const PER_PAGE = 6;
+  const chunkFeeds = arrayChunk(feeds!, PER_PAGE);
+
+  chunkFeeds.forEach((feeds, index) => {
+    createPage({
+      path: `/blog/${index + 1}`,
+      component: blogArchiveTemplate,
+      context: {
+        currentPageNumber: index + 1,
+        hasPrevPage: index !== 0,
+        hasNextPage: index !== chunkFeeds.length - 1,
+        feeds
       }
     });
   });

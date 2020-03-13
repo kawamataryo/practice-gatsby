@@ -2146,6 +2146,10 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   feed?: Maybe<SitePageContextFeed>;
+  currentPageNumber?: Maybe<Scalars['Int']>;
+  hasPrevPage?: Maybe<Scalars['Boolean']>;
+  hasNextPage?: Maybe<Scalars['Boolean']>;
+  feeds?: Maybe<Array<Maybe<SitePageContextFeeds>>>;
 };
 
 export type SitePageContextFeed = {
@@ -2162,8 +2166,30 @@ export type SitePageContextFeedFilterInput = {
   created_time?: Maybe<StringQueryOperatorInput>;
 };
 
+export type SitePageContextFeeds = {
+  message?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  full_picture?: Maybe<Scalars['String']>;
+  created_time?: Maybe<Scalars['String']>;
+};
+
+export type SitePageContextFeedsFilterInput = {
+  message?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  full_picture?: Maybe<StringQueryOperatorInput>;
+  created_time?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SitePageContextFeedsFilterListInput = {
+  elemMatch?: Maybe<SitePageContextFeedsFilterInput>;
+};
+
 export type SitePageContextFilterInput = {
   feed?: Maybe<SitePageContextFeedFilterInput>;
+  currentPageNumber?: Maybe<IntQueryOperatorInput>;
+  hasPrevPage?: Maybe<BooleanQueryOperatorInput>;
+  hasNextPage?: Maybe<BooleanQueryOperatorInput>;
+  feeds?: Maybe<SitePageContextFeedsFilterListInput>;
 };
 
 export type SitePageEdge = {
@@ -2269,6 +2295,14 @@ export type SitePageFieldsEnum =
   'context___feed___id' |
   'context___feed___full_picture' |
   'context___feed___created_time' |
+  'context___currentPageNumber' |
+  'context___hasPrevPage' |
+  'context___hasNextPage' |
+  'context___feeds' |
+  'context___feeds___message' |
+  'context___feeds___id' |
+  'context___feeds___full_picture' |
+  'context___feeds___created_time' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
