@@ -8,7 +8,7 @@ type BlogSingleTemplateProps = {
   };
 };
 
-export const blogSIngleTemplate: React.FC<BlogSingleTemplateProps> = ({
+export const blogSingleTemplate: React.FC<BlogSingleTemplateProps> = ({
   pageContext: { feed }
 }) => {
   return (
@@ -21,4 +21,4 @@ export const blogSIngleTemplate: React.FC<BlogSingleTemplateProps> = ({
   );
 };
 
-export default blogSIngleTemplate;
+export default blogSingleTemplate;
