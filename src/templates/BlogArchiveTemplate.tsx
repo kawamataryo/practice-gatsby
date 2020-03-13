@@ -2,6 +2,13 @@ import React from "react";
 import { Link } from "gatsby";
 import { FacebookFeedData } from "../../types/graphql-types";
 import { extractTitle } from "../utils/extractTitle";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography
+} from "@material-ui/core";
 
 type BlogArchiveTemplateProps = {
   pageContext: {
@@ -12,6 +19,34 @@ type BlogArchiveTemplateProps = {
   };
 };
 
+type PropsType = {
+  title: string;
+  content: string;
+  image: string;
+  createdAt: string;
+};
+
+const BlogCard: React.FC<PropsType> = ({
+  title,
+  content,
+  createdAt,
+  image
+}) => {
+  return (
+    <Card>
+      <CardActionArea>
+        <CardMedia image={image} title="Contemplative Reptile" />
+        <CardContent>
+          <h1>{title}</h1>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {content}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
+};
+
 export const blogArchiveTemplate: React.FC<BlogArchiveTemplateProps> = ({
   pageContext: { feeds, hasNextPage, hasPrevPage, currentPageNumber }
 }) => {
@@ -19,7 +54,12 @@ export const blogArchiveTemplate: React.FC<BlogArchiveTemplateProps> = ({
     return (
       <div key={feed.id!}>
         <h1>
-          <Link to={"/blog/" + feed.id!}>{extractTitle(feed.message!)}</Link>
+          <BlogCard
+            title={extractTitle(feed.message!)}
+            content={feed.message!}
+            image={feed.full_picture!}
+            createdAt={feed.created_time!}
+          />
         </h1>
       </div>
     );

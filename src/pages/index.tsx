@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
 
 import Layout from "../components/layout";
 import Image from "../components/image";
@@ -13,6 +14,9 @@ const IndexPage: React.FC = () => (
     <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <Image />
     </div>
+    <Button variant="contained" color="primary" href="/blog/1">
+      blog
+    </Button>
   </Layout>
 );
 
