@@ -2,13 +2,13 @@ import React from "react";
 import { FacebookFeedData } from "../../types/graphql-types";
 import { extractTitle } from "../utils/extractTitle";
 
-type BlogTemplateProps = {
+type BlogSingleTemplateProps = {
   pageContext: {
     feed: FacebookFeedData;
   };
 };
 
-export const BlogPostPage: React.FC<BlogTemplateProps> = ({
+export const blogSIngleTemplate: React.FC<BlogSingleTemplateProps> = ({
   pageContext: { feed }
 }) => {
   return (
@@ -21,4 +21,4 @@ export const BlogPostPage: React.FC<BlogTemplateProps> = ({
   );
 };
 
-export default BlogPostPage;
+export default blogSIngleTemplate;
