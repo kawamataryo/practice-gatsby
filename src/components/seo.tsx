@@ -79,17 +79,4 @@ const SEO: React.FC<PropsType> = ({ description, lang, meta, title }) => {
   );
 };
 
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``
-};
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired
-};
-
 export default SEO;
