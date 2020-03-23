@@ -591,6 +591,8 @@ export type File = Node & {
   birthtimeMs?: Maybe<Scalars['Float']>;
   blksize?: Maybe<Scalars['Int']>;
   blocks?: Maybe<Scalars['Int']>;
+  url?: Maybe<Scalars['String']>;
+  fields?: Maybe<FileFields>;
   /** Copy file to static directory and return public url to it */
   publicURL?: Maybe<Scalars['String']>;
   childImageSharp?: Maybe<ImageSharp>;
@@ -683,6 +685,11 @@ export type FileEdge = {
   previous?: Maybe<File>;
 };
 
+export type FileFields = {
+  SampleImage?: Maybe<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
+};
+
 export type FileFieldsEnum = 
   'sourceInstanceName' |
   'absolutePath' |
@@ -717,6 +724,9 @@ export type FileFieldsEnum =
   'birthtimeMs' |
   'blksize' |
   'blocks' |
+  'url' |
+  'fields___SampleImage' |
+  'fields___link' |
   'publicURL' |
   'childImageSharp___fixed___base64' |
   'childImageSharp___fixed___tracedSVG' |
@@ -896,6 +906,11 @@ export type FileFieldsEnum =
   'internal___owner' |
   'internal___type';
 
+export type FileFieldsFilterInput = {
+  SampleImage?: Maybe<StringQueryOperatorInput>;
+  link?: Maybe<StringQueryOperatorInput>;
+};
+
 export type FileFilterInput = {
   sourceInstanceName?: Maybe<StringQueryOperatorInput>;
   absolutePath?: Maybe<StringQueryOperatorInput>;
@@ -930,6 +945,8 @@ export type FileFilterInput = {
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  fields?: Maybe<FileFieldsFilterInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -1592,6 +1609,8 @@ export type QueryFileArgs = {
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  fields?: Maybe<FileFieldsFilterInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
