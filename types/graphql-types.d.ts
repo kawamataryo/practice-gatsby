@@ -686,8 +686,8 @@ export type FileEdge = {
 };
 
 export type FileFields = {
-  SampleImage?: Maybe<Scalars['String']>;
-  link?: Maybe<Scalars['String']>;
+  feedImage?: Maybe<Scalars['String']>;
+  feedId?: Maybe<Scalars['String']>;
 };
 
 export type FileFieldsEnum = 
@@ -725,8 +725,8 @@ export type FileFieldsEnum =
   'blksize' |
   'blocks' |
   'url' |
-  'fields___SampleImage' |
-  'fields___link' |
+  'fields___feedImage' |
+  'fields___feedId' |
   'publicURL' |
   'childImageSharp___fixed___base64' |
   'childImageSharp___fixed___tracedSVG' |
@@ -907,8 +907,8 @@ export type FileFieldsEnum =
   'internal___type';
 
 export type FileFieldsFilterInput = {
-  SampleImage?: Maybe<StringQueryOperatorInput>;
-  link?: Maybe<StringQueryOperatorInput>;
+  feedImage?: Maybe<StringQueryOperatorInput>;
+  feedId?: Maybe<StringQueryOperatorInput>;
 };
 
 export type FileFilterInput = {
