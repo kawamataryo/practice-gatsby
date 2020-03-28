@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import { FacebookFeedData } from "../../types/graphql-types";
 import { extractTitle } from "../utils/extractTitle";
+import ExternalImage from "../components/externalImage";
 import {
   Card,
   CardActionArea,
@@ -20,6 +21,7 @@ type BlogArchiveTemplateProps = {
 };
 
 type PropsType = {
+  id: string;
   title: string;
   content: string;
   image: string;
@@ -27,6 +29,7 @@ type PropsType = {
 };
 
 const BlogCard: React.FC<PropsType> = ({
+  id,
   title,
   content,
   createdAt,
@@ -37,6 +40,7 @@ const BlogCard: React.FC<PropsType> = ({
       <CardActionArea>
         <CardMedia image={image} title="Contemplative Reptile" />
         <CardContent>
+          <ExternalImage imageId={id} />
           <h1>{title}</h1>
           <Typography variant="body2" color="textSecondary" component="p">
             {content}
@@ -55,6 +59,7 @@ export const blogArchiveTemplate: React.FC<BlogArchiveTemplateProps> = ({
       <div key={feed.id!}>
         <h1>
           <BlogCard
+            id={feed.id!}
             title={extractTitle(feed.message!)}
             content={feed.message!}
             image={feed.full_picture!}
