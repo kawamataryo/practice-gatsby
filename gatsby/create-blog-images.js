@@ -2,8 +2,9 @@
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`);
 
 // TODO: TS化する
+// childImageSharpがnullになったら`yarn clean`すると直る
 exports.createBlogImages = async ({
-  actions: { createNode, createNodeField },
+  actions: { createNode, createNodeField, reporter },
   createNodeId,
   cache,
   store,

@@ -20,12 +20,15 @@ const externalImage: React.FC<{ imageId: string }> = ({ imageId }) => {
     }
   `);
 
-  console.log(JSON.stringify(data.allFile.nodes));
-  const targetFileNode = data.allFile.nodes.filter(
+  const targetFileNodes = data.allFile.nodes.filter(
     node => node.fields?.feedId === imageId
   );
 
-  return <Img fluid={targetFileNode.childImageSharp?.fluid} />;
+  if (!targetFileNodes[0] || !targetFileNodes[0].childImageSharp) {
+    return <p>no image</p>;
+  }
+
+  return <Img fluid={targetFileNodes[0].childImageSharp.fluid} />;
 };
 
 export default externalImage;
