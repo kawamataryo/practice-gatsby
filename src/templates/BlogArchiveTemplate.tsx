@@ -1,15 +1,17 @@
 import React from "react";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import { FacebookFeedData } from "../../types/graphql-types";
 import { extractTitle } from "../utils/extractTitle";
-import ExternalImage from "../components/externalImage";
 import {
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
+  Grid,
   Typography
 } from "@material-ui/core";
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 type BlogArchiveTemplateProps = {
   pageContext: {
@@ -35,13 +37,38 @@ const BlogCard: React.FC<PropsType> = ({
   createdAt,
   image
 }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      allFile {
+        nodes {
+          fields {
+            feedId
+          }
+          publicURL
+        }
+      }
+    }
+  `);
+
+  const targetFileNodes = data.allFile.nodes.filter(
+    node => node.fields?.feedId === id
+  );
+
+  const src = targetFileNodes[0]?.publicURL;
+  console.log(src);
+
   return (
     <Card>
       <CardActionArea>
-        <CardMedia image={image} title="Contemplative Reptile" />
+        <CardMedia
+          image={src ? src : "aaa"}
+          title="Contemplative Reptile"
+          style={{ height: 300 }}
+        />
         <CardContent>
-          <ExternalImage imageId={id} />
-          <h1>{title}</h1>
+          <Link to={`blog/${id}`}>
+            <h1>{title}</h1>
+          </Link>
           <Typography variant="body2" color="textSecondary" component="p">
             {content}
           </Typography>
@@ -56,7 +83,7 @@ export const blogArchiveTemplate: React.FC<BlogArchiveTemplateProps> = ({
 }) => {
   const feedLists = feeds.map(feed => {
     return (
-      <div key={feed.id!}>
+      <Grid item xs={12} sm={4} key={feed.id!}>
         <h1>
           <BlogCard
             id={feed.id!}
@@ -66,16 +93,25 @@ export const blogArchiveTemplate: React.FC<BlogArchiveTemplateProps> = ({
             createdAt={feed.created_time!}
           />
         </h1>
-      </div>
+      </Grid>
     );
   });
 
   return (
-    <div>
-      <div>{feedLists}</div>
-      {hasNextPage && <Link to={"/blog/" + (currentPageNumber + 1)}>次へ</Link>}
-      {hasPrevPage && <Link to={"/blog/" + (currentPageNumber - 1)}>前へ</Link>}
-    </div>
+    <Layout>
+      <SEO title="Home" />
+      <div>
+        <Grid container spacing={3}>
+          {feedLists}
+        </Grid>
+        {hasNextPage && (
+          <Link to={"/blog/" + (currentPageNumber + 1)}>次へ</Link>
+        )}
+        {hasPrevPage && (
+          <Link to={"/blog/" + (currentPageNumber - 1)}>前へ</Link>
+        )}
+      </div>
+    </Layout>
   );
 };
 

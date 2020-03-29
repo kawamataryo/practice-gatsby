@@ -56,7 +56,7 @@ export const createBlog: GatsbyNode["createPages"] = async ({
   });
 
   // create archive
-  const PER_PAGE = 6;
+  const PER_PAGE = 40;
   const chunkFeeds = arrayChunk(feeds!, PER_PAGE);
 
   chunkFeeds.forEach((feeds, index) => {

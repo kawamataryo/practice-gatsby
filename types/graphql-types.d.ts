@@ -2785,6 +2785,14 @@ export type Unnamed_3_QueryVariables = {};
 
 export type Unnamed_3_Query = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
+export type Unnamed_4_QueryVariables = {};
+
+
+export type Unnamed_4_Query = { allFile: { nodes: Array<(
+      Pick<File, 'publicURL'>
+      & { fields: Maybe<Pick<FileFields, 'feedId'>> }
+    )> } };
+
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 export type GatsbyImageSharpFixed_TracedSvgFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;

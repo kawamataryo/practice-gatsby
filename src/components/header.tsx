@@ -1,5 +1,4 @@
 import { Link } from "gatsby";
-import * as PropTypes from "prop-types";
 import React from "react";
 
 type HeaderProps = {
@@ -34,13 +33,5 @@ const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
     </div>
   </header>
 );
-
-Header.propTypes = {
-  siteTitle: PropTypes.string
-};
-
-Header.defaultProps = {
-  siteTitle: ``
-};
 
 export default Header;

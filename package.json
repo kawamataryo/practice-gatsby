@@ -47,7 +47,7 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run type-check && gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby clean && gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "start": "npm run develop",
