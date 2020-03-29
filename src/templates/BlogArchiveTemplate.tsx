@@ -1,17 +1,11 @@
 import React from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { Link } from "gatsby";
 import { FacebookFeedData } from "../../types/graphql-types";
 import { extractTitle } from "../utils/extractTitle";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography
-} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import { BlogCard } from "../components/blogCard";
 
 type BlogArchiveTemplateProps = {
   pageContext: {
@@ -20,62 +14,6 @@ type BlogArchiveTemplateProps = {
     hasPrevPage: boolean;
     hasNextPage: boolean;
   };
-};
-
-type PropsType = {
-  id: string;
-  title: string;
-  content: string;
-  image: string;
-  createdAt: string;
-};
-
-const BlogCard: React.FC<PropsType> = ({
-  id,
-  title,
-  content,
-  createdAt,
-  image
-}) => {
-  const data = useStaticQuery(graphql`
-    query {
-      allFile {
-        nodes {
-          fields {
-            feedId
-          }
-          publicURL
-        }
-      }
-    }
-  `);
-
-  const targetFileNodes = data.allFile.nodes.filter(
-    node => node.fields?.feedId === id
-  );
-
-  const src = targetFileNodes[0]?.publicURL;
-  console.log(src);
-
-  return (
-    <Card>
-      <CardActionArea>
-        <CardMedia
-          image={src ? src : "aaa"}
-          title="Contemplative Reptile"
-          style={{ height: 300 }}
-        />
-        <CardContent>
-          <Link to={`blog/${id}`}>
-            <h1>{title}</h1>
-          </Link>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {content}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-  );
 };
 
 export const blogArchiveTemplate: React.FC<BlogArchiveTemplateProps> = ({

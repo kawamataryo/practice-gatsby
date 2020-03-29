@@ -2768,30 +2768,30 @@ export type StringQueryOperatorInput = {
 export type Unnamed_1_QueryVariables = {};
 
 
-export type Unnamed_1_Query = { allFile: { nodes: Array<{ fields: Maybe<Pick<FileFields, 'feedId'>>, childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> } };
+export type Unnamed_1_Query = { allFile: { nodes: Array<(
+      Pick<File, 'publicURL'>
+      & { fields: Maybe<Pick<FileFields, 'feedId'>> }
+    )> } };
 
 export type Unnamed_2_QueryVariables = {};
 
 
-export type Unnamed_2_Query = { placeholderImage: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> };
+export type Unnamed_2_Query = { allFile: { nodes: Array<{ fields: Maybe<Pick<FileFields, 'feedId'>>, childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> } };
+
+export type Unnamed_3_QueryVariables = {};
+
+
+export type Unnamed_3_Query = { placeholderImage: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> };
 
 export type SiteTitleQueryQueryVariables = {};
 
 
 export type SiteTitleQueryQuery = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
-export type Unnamed_3_QueryVariables = {};
-
-
-export type Unnamed_3_Query = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
-
 export type Unnamed_4_QueryVariables = {};
 
 
-export type Unnamed_4_Query = { allFile: { nodes: Array<(
-      Pick<File, 'publicURL'>
-      & { fields: Maybe<Pick<FileFields, 'feedId'>> }
-    )> } };
+export type Unnamed_4_Query = { site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
